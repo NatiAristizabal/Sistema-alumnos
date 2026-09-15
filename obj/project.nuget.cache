@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "nvHsttuGPC8=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Usuario\\source\\repos\\Sistema-alumnos\\Sistema-alumnos\\Sistema_alumnos.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.11\\microsoft.aspnetcore.openapi.10.0.11.nupkg.sha512",
+    "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.openapi\\2.7.5\\microsoft.openapi.2.7.5.nupkg.sha512"
+  ],
+  "logs": []
+}
