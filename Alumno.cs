@@ -7,10 +7,27 @@ public class Alumno
     public double Nota1 { get; set; }
     public double Nota2 { get; set; }
 
-    // Constructor corregido
     public Alumno(string nombre, int legajo)
     {
         Nombre = nombre;
         Legajo = legajo;
+    }
+
+     public double CalcularPromedio()
+    {
+        return (Nota1 + Nota2) / 2.0;
+    }
+
+     public string ObtenerCondicion()
+    {
+        double promedio = CalcularPromedio();
+        if (promedio >= 6.0)
+        {
+            return "Aprobado";
+        }
+        else
+        {
+            return "Desaprobado";
+        }
     }
 }
