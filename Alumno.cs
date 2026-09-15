@@ -6,4 +6,11 @@ public class Alumno
     public int Legajo { get; set; }
     public double Nota1 { get; set; }
     public double Nota2 { get; set; }
+
+    // Constructor corregido
+    public Alumno(string nombre, int legajo)
+    {
+        Nombre = nombre;
+        Legajo = legajo;
+    }
 }
