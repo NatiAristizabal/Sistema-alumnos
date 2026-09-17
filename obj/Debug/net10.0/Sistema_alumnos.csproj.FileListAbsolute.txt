@@ -32,3 +32,4 @@ C:\Users\Usuario\source\repos\Sistema-alumnos\Sistema-alumnos\obj\Debug\net10.0\
 C:\Users\Usuario\source\repos\Sistema-alumnos\Sistema-alumnos\obj\Debug\net10.0\Sistema_alumnos.genruntimeconfig.cache
 C:\Users\Usuario\source\repos\Sistema-alumnos\Sistema-alumnos\obj\Debug\net10.0\ref\Sistema_alumnos.dll
 C:\Users\Usuario\source\repos\Sistema-alumnos\Sistema-alumnos\obj\Debug\net10.0\Sistema_alumnos.sourcelink.json
+C:\Users\Usuario\source\repos\Sistema-alumnos\Sistema-alumnos\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt

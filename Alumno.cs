@@ -13,21 +13,20 @@ public class Alumno
         Legajo = legajo;
     }
 
-     public double CalcularPromedio()
+    public double CalcularPromedio()
     {
         return (Nota1 + Nota2) / 2.0;
     }
 
-     public string ObtenerCondicion()
+    // Sobrescribimos el método ToString original de la clase object
+    public override string ToString()
     {
-        double promedio = CalcularPromedio();
-        if (promedio >= 6.0)
-        {
-            return "Aprobado";
-        }
-        else
-        {
-            return "Desaprobado";
-        }
+        return $"{Legajo} - {Nombre} (promedio: {CalcularPromedio()})";
     }
 }
+
+// NOTA ETAPA 4:
+// Si se elimina la palabra reservada 'override', el compilador emite la advertencia,
+// "'Alumno.ToString()' hides inherited member 'object.ToString()'. Use the new keyword if hiding was intended."
+// Esto ocurre porque 'ToString()' ya existe en la clase base 'Object'. Sin 'override',
+// C# no sabe si la intención es reemplazar el método base o declarar uno completamente independiente.
