@@ -46,10 +46,15 @@ do
 } while (!salir);
 
 
+// --- MÉTODOS AUXILIARES ---
+
 static void AgregarAlumno(List<Alumno> lista)
 {
     Console.Write("Ingrese el nombre del alumno: ");
-    string nombre = Console.ReadLine();
+    string nombre = Console.ReadLine() ?? "";
+
+    Console.Write("Ingrese el documento del alumno: ");
+    string documento = Console.ReadLine() ?? "";
 
     Console.Write("Ingrese el legajo del alumno: ");
     if (!int.TryParse(Console.ReadLine(), out int legajo))
@@ -58,7 +63,7 @@ static void AgregarAlumno(List<Alumno> lista)
         return;
     }
 
-    Alumno nuevoAlumno = new Alumno(nombre, legajo);
+    Alumno nuevoAlumno = new Alumno(nombre, documento, legajo);
 
     Console.Write("Ingrese la Nota 1: ");
     double.TryParse(Console.ReadLine(), out double nota1);

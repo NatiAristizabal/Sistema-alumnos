@@ -1,16 +1,14 @@
 ﻿namespace Sistema_alumnos;
 
-public class Alumno
+public class Alumno : Persona
 {
-    public string Nombre { get; set; }
-
     public int Legajo { get; private set; }
     public double Nota1 { get; private set; }
     public double Nota2 { get; private set; }
 
-    public Alumno(string nombre, int legajo)
+    public Alumno(string nombre, string documento, int legajo)
+        : base(nombre, documento)
     {
-        Nombre = nombre;
         Legajo = legajo;
     }
 
@@ -23,7 +21,7 @@ public class Alumno
             return true;
         }
 
-        return false; 
+        return false;
     }
 
     public double CalcularPromedio()
@@ -39,6 +37,6 @@ public class Alumno
 
     public override string ToString()
     {
-        return $"{Legajo} - {Nombre} (promedio: {CalcularPromedio()})";
+        return $"{Legajo} - {Nombre} (DNI: {Documento}) | Promedio: {CalcularPromedio():F2}";
     }
 }
