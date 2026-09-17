@@ -1,21 +1,146 @@
 using Sistema_alumnos;
 
-Alumno alumno1 = new Alumno("Carlos", 1001);
+List<Alumno> listaAlumnos = new List<Alumno>();
+bool salir = false;
 
-if (!alumno1.CargarNotas(7.5, 8.0))
+do
 {
-    Console.WriteLine($"Error: Las notas ingresadas para {alumno1.Nombre} son inválidas.");
+    Console.WriteLine("\n=== SISTEMA DE GESTIÓN DE ALUMNOS ===");
+    Console.WriteLine("1. Agregar un alumno");
+    Console.WriteLine("2. Listar todos los alumnos");
+    Console.WriteLine("3. Buscar un alumno por legajo");
+    Console.WriteLine("4. Mostrar el promedio general del curso");
+    Console.WriteLine("5. Mostrar cuántos alumnos están aprobados");
+    Console.WriteLine("6. Salir");
+    Console.Write("Seleccione una opción: ");
+
+    string opcion = Console.ReadLine() ?? "";
+    Console.WriteLine();
+
+    switch (opcion)
+    {
+        case "1":
+            AgregarAlumno(listaAlumnos);
+            break;
+        case "2":
+            ListarAlumnos(listaAlumnos);
+            break;
+        case "3":
+            BuscarAlumnoPorLegajo(listaAlumnos);
+            break;
+        case "4":
+            MostrarPromedioGeneral(listaAlumnos);
+            break;
+        case "5":
+            MostrarCantidadAprobados(listaAlumnos);
+            break;
+        case "6":
+            salir = true;
+            Console.WriteLine("Saliendo del programa...");
+            break;
+        default:
+            Console.WriteLine("Opción no válida. Intente nuevamente.");
+            break;
+    }
+
+} while (!salir);
+
+
+static void AgregarAlumno(List<Alumno> lista)
+{
+    Console.Write("Ingrese el nombre del alumno: ");
+    string nombre = Console.ReadLine();
+
+    Console.Write("Ingrese el legajo del alumno: ");
+    if (!int.TryParse(Console.ReadLine(), out int legajo))
+    {
+        Console.WriteLine("Error: El legajo debe ser un número entero.");
+        return;
+    }
+
+    Alumno nuevoAlumno = new Alumno(nombre, legajo);
+
+    Console.Write("Ingrese la Nota 1: ");
+    double.TryParse(Console.ReadLine(), out double nota1);
+
+    Console.Write("Ingrese la Nota 2: ");
+    double.TryParse(Console.ReadLine(), out double nota2);
+
+    if (nuevoAlumno.CargarNotas(nota1, nota2))
+    {
+        lista.Add(nuevoAlumno);
+        Console.WriteLine("¡Alumno cargado correctamente!");
+    }
+    else
+    {
+        Console.WriteLine("Error: Las notas deben estar entre 0 y 10. No se guardó el alumno.");
+    }
 }
 
-Alumno alumno2 = new Alumno("Lucía", 1002);
-
-if (!alumno2.CargarNotas(47.0, 5.0))
+static void ListarAlumnos(List<Alumno> lista)
 {
-    Console.WriteLine($"Error: Las notas ingresadas para {alumno2.Nombre} son inválidas.");
+    if (lista.Count == 0)
+    {
+        Console.WriteLine("No hay alumnos registrados.");
+        return;
+    }
+
+    Console.WriteLine("--- LISTADO DE ALUMNOS ---");
+    foreach (var alumno in lista)
+    {
+        Console.WriteLine(alumno);
+    }
 }
 
-Alumno alumno = new Alumno("Carlos", 1001);
-alumno.Nota1 = 47;
+static void BuscarAlumnoPorLegajo(List<Alumno> lista)
+{
+    Console.Write("Ingrese el legajo a buscar: ");
+    if (!int.TryParse(Console.ReadLine(), out int legajo))
+    {
+        Console.WriteLine("Error: Debe ingresar un número de legajo válido.");
+        return;
+    }
 
-Console.WriteLine(alumno1);
-Console.WriteLine(alumno2);
+    Alumno alumnoEncontrado = lista.Find(a => a.Legajo == legajo);
+
+    if (alumnoEncontrado != null)
+    {
+        Console.WriteLine($"Alumno encontrado: {alumnoEncontrado} | Condición: {alumnoEncontrado.ObtenerCondicion()}");
+    }
+    else
+    {
+        Console.WriteLine($"No existe ningún alumno con el legajo {legajo}.");
+    }
+}
+
+static void MostrarPromedioGeneral(List<Alumno> lista)
+{
+    if (lista.Count == 0)
+    {
+        Console.WriteLine("Todavía no hay alumnos para calcular el promedio general.");
+        return;
+    }
+
+    double sumaPromedios = 0;
+    foreach (var alumno in lista)
+    {
+        sumaPromedios += alumno.CalcularPromedio();
+    }
+
+    double promedioGeneral = sumaPromedios / lista.Count;
+    Console.WriteLine($"Promedio general del curso: {promedioGeneral:F2}");
+}
+
+static void MostrarCantidadAprobados(List<Alumno> lista)
+{
+    int aprobados = 0;
+    foreach (var alumno in lista)
+    {
+        if (alumno.ObtenerCondicion() == "Aprobado")
+        {
+            aprobados++;
+        }
+    }
+
+    Console.WriteLine($"Cantidad de alumnos aprobados: {aprobados} de {lista.Count}");
+}
