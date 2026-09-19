@@ -1,15 +1,15 @@
-﻿namespace Sistema_alumnos;
+﻿public class Persona
+{
+    public string Nombre { get; set; }
 
-    public class Persona
+    public Persona(string nombre)
     {
-        public string Nombre { get; set; }
-        public string Documento { get; set; }
-
-        public Persona(string nombre, string documento)
-        {
-            Nombre = nombre;
-            Documento = documento;
-        }
+        Nombre = nombre;
     }
+    public virtual string Presentarse()
+    {
+        return $"Hola, soy {Nombre}.";
+    }
+}
 
 

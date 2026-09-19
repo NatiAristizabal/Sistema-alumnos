@@ -1,42 +1,22 @@
-﻿namespace Sistema_alumnos;
-
-public class Alumno : Persona
+﻿namespace SistemaAlumnos
 {
-    public int Legajo { get; private set; }
-    public double Nota1 { get; private set; }
-    public double Nota2 { get; private set; }
-
-    public Alumno(string nombre, string documento, int legajo)
-        : base(nombre, documento)
+    public class Alumno : Persona, IExportable
     {
-        Legajo = legajo;
-    }
+        public int Legajo { get; set; }
 
-    public bool CargarNotas(double nota1, double nota2)
-    {
-        if (nota1 >= 0.0 && nota1 <= 10.0 && nota2 >= 0.0 && nota2 <= 10.0)
+        public Alumno(string nombre, int legajo) : base(nombre)
         {
-            Nota1 = nota1;
-            Nota2 = nota2;
-            return true;
+            Legajo = legajo;
         }
 
-        return false;
-    }
+        public override string Presentarse()
+        {
+            return $"Hola, soy {Nombre}, alumno con legajo {Legajo}.";
+        }
 
-    public double CalcularPromedio()
-    {
-        return (Nota1 + Nota2) / 2.0;
-    }
-
-    public string ObtenerCondicion()
-    {
-        double promedio = CalcularPromedio();
-        return promedio >= 6.0 ? "Aprobado" : "Desaprobado";
-    }
-
-    public override string ToString()
-    {
-        return $"{Legajo} - {Nombre} (DNI: {Documento}) | Promedio: {CalcularPromedio():F2}";
+        public string ExportarLinea()
+        {
+            return $"ALUMNO;{Legajo};{Nombre};7";
+        }
     }
 }

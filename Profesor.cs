@@ -1,17 +1,22 @@
-﻿namespace Sistema_alumnos;
-
-public class Profesor : Persona
+﻿namespace SistemaAlumnos
 {
-    public string Materia { get; set; }
-
-    public Profesor(string nombre, string documento, string materia)
-        : base(nombre, documento)
+    public class Profesor : Persona, IExportable
     {
-        Materia = materia;
-    }
+        public string Materia { get; set; }
 
-    public override string ToString()
-    {
-        return $"Prof. {Nombre} (DNI: {Documento}) - Materia: {Materia}";
+        public Profesor(string nombre, string materia) : base(nombre)
+        {
+            Materia = materia;
+        }
+
+        public override string Presentarse()
+        {
+            return $"Hola, soy {Nombre} y dicto {Materia}.";
+        }
+
+        public string ExportarLinea()
+        {
+            return $"PROFESOR;{Nombre};{Materia}";
+        }
     }
 }
